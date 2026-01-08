@@ -1,1 +1,7 @@
-main
+graph.o
+libgraph.a
+libgraph.o
+libgraph.so
+prog1
+prog2
+prog3

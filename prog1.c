@@ -9,12 +9,7 @@
 #define HEIGHT	(10*9)
 #define WIDTH	(15*16)
 
-// #define WIDTH	3
-// #define HEIGHT	4
-
 #define xx 3
-
-// const char canvas[5] = {' ', '.', '*', 'O', '#'};
 
 #if xx==1
 int main()
