@@ -5,21 +5,24 @@ Short and simple static/shared library to draw shapes
 ## Ready to start
 
 ```console
-$ make all
-$ ./prog1
-$ ./prog2
-$ ./prog3
-```
-it will create 3 identical programs:
-> prog1 is comile with the static or dynamic librairy of graph depanding of the argument pass through make
-> prog2 is only compile with prog2.c, everything is in the header file libgraph.h
-> prog3 is compile with libgraph object file and use the header file libgraph.h
-
-if you want to use the dynamic lib instead of static:
-
-```console
-$ make static
-$ ./prog1
+$ make prog1
+$ ./prog
+$ make prog2
+$ ./prog
+$ make prog_static
+$ ./prog
+$ make prog_dyn
+$ ./prog
 ```
 
-The prog(n).c program is just an exemple of use and it draw a triangle and move each point to the x and y axes step by step
+Here is 3 ways to compile a same program:
+
+> make prog1 will compile only the prog.c, everything is in the header file libgraph.h
+
+> make prog2 will compile with libgraph object file and use the header file libgraph.h
+
+> make prog_static will create a static librairy of graph and compile prog.c with
+
+> make prog_dyn will create a dynamic librairy of graph and compile prog.c with
+
+The prog.c program is just an exemple of use and it draw a triangle and move each point to the x and y axes step by step
