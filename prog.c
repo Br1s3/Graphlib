@@ -4,7 +4,16 @@
 #include <errno.h>
 #include <string.h>
 #include <time.h>
-#include "graph.h"
+
+#if defined(PROG1)
+#    define LIBGRAPH_IMPLEMENTATION
+#    include "libgraph.h"
+#elif defined(PROG2)
+#    include "libgraph.h"
+#else
+#    include "graph.h"
+
+#endif
 
 #define HEIGHT	(10*9)
 #define WIDTH	(15*16)
