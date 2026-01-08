@@ -12,7 +12,6 @@
 #    include "libgraph.h"
 #else
 #    include "graph.h"
-
 #endif
 
 #define HEIGHT	(10*9)
