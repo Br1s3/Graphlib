@@ -2,4 +2,5 @@ graph.o
 libgraph.a
 libgraph.o
 libgraph.so
-prog
+main
+

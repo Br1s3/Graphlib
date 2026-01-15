@@ -4,44 +4,62 @@ RM = rm -rf
 CFLAGS +=	\
 -Wextra		\
 -Wall   	\
+-lm   	        \
 
 
-.PHONY: prog1 prog2 prog_dyn prog_static clean
+MODE ?= PROG1
 
-prog1: prog.c
-	$(CC) prog.c -o prog -DPROG1 $(CFLAGS)
+.PHONY: header obj dynamic static clean
+
+header:
+	$(MAKE) --no-print-directory MODE=PROG1 main
+
+obj: 
+	$(MAKE) --no-print-directory MODE=PROG2 main
+
+dynamic: 
+	$(MAKE) --no-print-directory MODE=PROGDYN main
+
+static: 
+	$(MAKE) --no-print-directory MODE=PROGSTAT main
 
 
+ifeq ($(MODE), PROG1)
+main: main.c graph.c
+	@echo Simple compilation of programs
+	$(CC) $< -o $@ -D$(MODE) $(CFLAGS)
+else ifeq ($(MODE), PROG2)
+main: main.c libgraph.o
+	@echo Compile with obj lib
+	$(CC) $^ -o $@ -D$(MODE) $(CFLAGS)
+else ifeq ($(MODE), PROGDYN)
+main: main.c libgraph.so
+	@echo Compile the dynamique library
+	$(CC) $< -o $@ -D$(MODE) $(CFLAGS) -L. -lgraph -Wl,-rpath=./
+else ifeq ($(MODE), PROGSTAT)
+main: main.c libgraph.a
+	@echo Compile the static library
+	$(CC) $< -o $@ -L. -lgraph -D$(MODE) $(CFLAGS)
+else
+	@echo ERROR: Impossible mode
+endif
 
-libgraph.o:
-	$(CC) -DLIBGRAPH_IMPLEMENTATION -x c -c libgraph.h
 
-prog2: libgraph.o
-	$(CC) prog.c libgraph.o -o prog -DPROG2 $(CFLAGS)
+libgraph.o: libgraph.h
+	$(CC) -DLIBGRAPH_IMPLEMENTATION -x c -c $<
 
-
-
-# Pour lancer le prog1 si pas "-Wl,-rpath=./"
-# LD_LIBRARY_PATH="./" ./prog1
 libgraph.so: graph.c
-	$(CC) $(CFLAGS) -fPIC -shared -o libgraph.so graph.c
+	$(CC) $(CFLAGS) -fPIC -shared -o $@ $<
 
-prog_dyn: prog.c | libgraph.so
-	$(CC) prog.c -o prog $(CFLAGS) -L. -lgraph -Wl,-rpath=./
+graph.o: graph.c
+	$(CC) $(CFLAGS) -c $<
 
-
-libgraph.a: graph.c
-	$(CC) $(CFLAGS) -c graph.c
-	ar -cvq libgraph.a graph.o
-	@ar -t libgraph.a
-
-prog_static: prog.c | libgraph.a
-	$(CC) prog.c -o prog -L. -lgraph $(CFLAGS)
-
-
+libgraph.a: graph.o
+	ar -cvq $@ $<
+	@ar -t $@
 
 clean:
 	$(RM) *.o
 	$(RM) *.a
 	$(RM) *.so
-	$(RM) prog
+	$(RM) main

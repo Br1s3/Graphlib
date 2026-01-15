@@ -5,6 +5,7 @@
 #define min(x, y) ((x)>(y) ? y : x)
 #define moveto(y, x) printf("\033[%d;%dH", (y), (x));
 #define dec(x, y) ((x*(width+1)) + y)
+#define ABS(x) ((x)<0?(-x):(x))
 #define ERRALLOC(x)                                                                          \
 do                                                                                           \
 {                                                                                            \
@@ -22,7 +23,7 @@ typedef struct
 
 typedef struct
 {
-   float x, y;
+   double x, y;
 }COORDF;
 
 typedef struct
@@ -44,7 +45,7 @@ void mem_free(char **ptr, int H);
 void cons_clear(char **pixels, short width, short height, const char clear);
 void cons_rect(char **pixels, short width, short height, int x, int y, int largeur, int hauteur, const char fd);
 void cons_cercle(char **pixels, short width, short height, int x, int y, int radius, const char fd);
-void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx, int by, int ep, const char fd);
+void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx, int by, const char fd);
 void cons_triangle(char **pixels, short width, short height, int ax, int ay, int bx, int by, int cx, int cy, const char fd);
 
 void print_cons(char **pixels, short width, short height);
