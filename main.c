@@ -179,13 +179,13 @@ int main()
     Corp shadow1;
     shadow1.pos.x = 25;
     shadow1.pos.y = 0;
-    shadow1.color = '$';
+    shadow1.color = ' ';
     shadow1.radius = 10;
 
     Corp shadow2;
     shadow2.pos.x = -25;
     shadow2.pos.y = 0;
-    shadow2.color = '%';
+    shadow2.color = ' ';
     shadow2.radius = 10;
 
     char **console = mem_alloc(HEIGHT, WIDTH);

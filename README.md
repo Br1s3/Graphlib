@@ -23,3 +23,7 @@ Here is 3 ways to compile a same program:
 > - make prog\_dyn will create a dynamic librairy of graph and compile prog.c with
 
 The prog.c program is just an exemple of use and it draw a triangle and move each point to the x and y axes step by step
+
+## Exmple:
+
+[![Ray Tracing](./picture/Raytracing.png)](/picture)

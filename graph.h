@@ -5,7 +5,9 @@
 #define min(x, y) ((x)>(y) ? y : x)
 #define moveto(y, x) printf("\033[%d;%dH", (y), (x));
 #define dec(x, y) ((x*(width+1)) + y)
+#ifndef ABS
 #define ABS(x) ((x)<0?(-x):(x))
+#endif
 #define ERRALLOC(x)                                                                          \
 do                                                                                           \
 {                                                                                            \
