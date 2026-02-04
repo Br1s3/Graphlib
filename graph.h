@@ -56,7 +56,7 @@ void set_console();
 
 #include <stdint.h>
 void draw_clear(uint8_t ***pixels, short width, short height);
-void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, int ep, const uint32_t fd);
+void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, const uint32_t fd);
 void draw_cercle(uint8_t ***pixels, short width, short height, int x, int y, int radius, const uint32_t fd);
 
 #endif //CONS_H_INCLUED

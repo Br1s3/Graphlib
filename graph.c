@@ -88,8 +88,8 @@ void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx
     for (double t = 0; t < 1; t+=0.01) {
 	double x = (AB.x*t + a.x);
 	double y = (AB.y*t + a.y);
-	if (ABS(x*(width/2)) > width/2 || ABS(y*(height/2)) > height/2) break;
-	pixels[(int)(-y*(height/2)) + height/2][(int)(x*width/2) + width/2] = fd;
+	if ((int)(ABS(x*(width/2))) > width/2-1 || (int)(ABS(y*(height/2))) > height/2-1) break;
+	pixels[(int)((height/2)*(1 - y))][(int)((width/2)*(1 + x))] = fd; 
     }
 }
 
@@ -162,7 +162,7 @@ void draw_clear(uint8_t ***pixels, short width, short height)
    }
 }
 
-void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, int ep, const uint32_t fd)
+void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, const uint32_t fd)
 {
     // RECT wind;
     // wind.A.x = -width/2;
@@ -203,7 +203,7 @@ void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, in
     for (double t = 0; t < 1; t+=0.01) {
 	double x = (AB.x*t + a.x);
 	double y = (AB.y*t + a.y);
-	if (ABS(x*(width/2)) > width/2 || ABS(y*(height/2)) > height/2) break;
+	if ((int)(ABS(x*(width/2))) > width/2-1 || (int)(ABS(y*(height/2))) > height/2-1) break;
 	pixels[(int)(-y*(height/2)) + height/2][(int)(x*width/2) + width/2][0] = fd>>(8*3);
 	pixels[(int)(-y*(height/2)) + height/2][(int)(x*width/2) + width/2][1] = fd>>(8*2);
 	pixels[(int)(-y*(height/2)) + height/2][(int)(x*width/2) + width/2][2] = fd>>(8*1);
