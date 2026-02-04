@@ -53,15 +53,15 @@ void XZ_rotation(COORD3DF *p, double theta)
 
 void Square_init(Square *S)
 {
-    S->p[0] = (COORD3DF){ 0.25,  0.25,  0.25};
-    S->p[1] = (COORD3DF){-0.25,  0.25,  0.25};
-    S->p[2] = (COORD3DF){-0.25, -0.25,  0.25};
-    S->p[3] = (COORD3DF){ 0.25, -0.25,  0.25};
+    S->p[0] = (COORD3DF){ 0.4,  0.4,  0.4};
+    S->p[1] = (COORD3DF){-0.4,  0.4,  0.4};
+    S->p[2] = (COORD3DF){-0.4, -0.4,  0.4};
+    S->p[3] = (COORD3DF){ 0.4, -0.4,  0.4};
 
-    S->p[4] = (COORD3DF){ 0.25,  0.25, -0.25};
-    S->p[5] = (COORD3DF){-0.25,  0.25, -0.25};
-    S->p[6] = (COORD3DF){-0.25, -0.25, -0.25};
-    S->p[7] = (COORD3DF){ 0.25, -0.25, -0.25};
+    S->p[4] = (COORD3DF){ 0.4,  0.4, -0.4};
+    S->p[5] = (COORD3DF){-0.4,  0.4, -0.4};
+    S->p[6] = (COORD3DF){-0.4, -0.4, -0.4};
+    S->p[7] = (COORD3DF){ 0.4, -0.4, -0.4};
 }
 
 void Square_Connexion_init(Square_Connexion *Sc)

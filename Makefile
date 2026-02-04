@@ -1,6 +1,6 @@
 CC = gcc
 RM = rm -rf
-EXEC = prog1 prog2 raytracing triangle 3DSquare
+EXEC = animation raytracing triangle 3DSquare
 
 CFLAGS +=	\
 -Wextra		\
