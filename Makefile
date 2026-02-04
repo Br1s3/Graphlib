@@ -1,5 +1,6 @@
 CC = gcc
 RM = rm -rf
+EXEC = prog1 prog2 raytracing triangle 3DSquare
 
 CFLAGS +=	\
 -Wextra		\
@@ -12,32 +13,31 @@ MODE ?= PROG1
 .PHONY: header obj dynamic static clean
 
 header:
-	$(MAKE) --no-print-directory MODE=PROG1 main
+	$(MAKE) --no-print-directory MODE=PROG1 $(EXEC)
 
 obj: 
-	$(MAKE) --no-print-directory MODE=PROG2 main
+	$(MAKE) --no-print-directory MODE=PROG2 $(EXEC)
 
 dynamic: 
-	$(MAKE) --no-print-directory MODE=PROGDYN main
+	$(MAKE) --no-print-directory MODE=PROGDYN $(EXEC)
 
 static: 
-	$(MAKE) --no-print-directory MODE=PROGSTAT main
-
+	$(MAKE) --no-print-directory MODE=PROGSTAT $(EXEC)
 
 ifeq ($(MODE), PROG1)
-main: main.c graph.c
+%: %.c
 	@echo Simple compilation of programs
 	$(CC) $< -o $@ -D$(MODE) $(CFLAGS)
 else ifeq ($(MODE), PROG2)
-main: main.c libgraph.o
+%: %.c libgraph.o
 	@echo Compile with obj lib
 	$(CC) $^ -o $@ -D$(MODE) $(CFLAGS)
 else ifeq ($(MODE), PROGDYN)
-main: main.c libgraph.so
+%: %.c libgraph.so
 	@echo Compile the dynamique library
 	$(CC) $< -o $@ -D$(MODE) $(CFLAGS) -L. -lgraph -Wl,-rpath=./
 else ifeq ($(MODE), PROGSTAT)
-main: main.c libgraph.a
+%: %.c libgraph.a
 	@echo Compile the static library
 	$(CC) $< -o $@ -L. -lgraph -D$(MODE) $(CFLAGS)
 else
@@ -62,4 +62,4 @@ clean:
 	$(RM) *.o
 	$(RM) *.a
 	$(RM) *.so
-	$(RM) main
+	$(RM) $(EXEC)

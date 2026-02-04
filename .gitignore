@@ -1,6 +1,10 @@
+prog1 
+prog2 
+raytracing 
+triangle
+3DSquare
 graph.o
 libgraph.a
 libgraph.o
 libgraph.so
-main
 
