@@ -14,7 +14,7 @@
 
 
 # define HEIGHT	(7*9)
-# define WIDTH	(15*16)
+# define WIDTH	(10*16)
 
 typedef struct {
     int x;
@@ -80,7 +80,8 @@ int main()
 	cons_cercle(console, WIDTH, HEIGHT, shadow1.pos.x, shadow1.pos.y, shadow1.radius, shadow1.color);
 	cons_cercle(console, WIDTH, HEIGHT, shadow2.pos.x, shadow2.pos.y, shadow2.radius, shadow2.color);
 
-	print_cons(console, WIDTH, HEIGHT);
+	// print_cons(console, WIDTH, HEIGHT);
+	print_cons_comp(console, WIDTH, HEIGHT);
 	usleep(5000);
     }
     

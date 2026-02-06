@@ -28,19 +28,6 @@ typedef struct
    double x, y;
 }COORDF;
 
-typedef struct
-{
-   COORD A;
-   COORD B;
-}RECT;
-
-typedef struct
-{
-   COORDF A;
-   COORDF B;
-   COORDF C;
-}TRIG;
-
 
 char **mem_alloc(int H, int W);
 void mem_free(char **ptr, int H);
@@ -51,6 +38,7 @@ void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx
 void cons_triangle(char **pixels, short width, short height, int ax, int ay, int bx, int by, int cx, int cy, const char fd);
 
 void print_cons(char **pixels, short width, short height);
+void print_cons_comp(char **pixels, short width, short height);
 
 void set_console();
 

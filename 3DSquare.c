@@ -2,8 +2,14 @@
 #include <raylib.h>
 #include <math.h>
 
-#define LIBGRAPH_IMPLEMENTATION
-#include "libgraph.h"
+#if defined(PROG1)
+#    define LIBGRAPH_IMPLEMENTATION
+#    include "libgraph.h"
+#elif defined(PROG2)
+#    include "libgraph.h"
+#else
+#    include "graph.h"
+#endif
 
 #define FPS 60
 #define WIDTH 120
@@ -141,6 +147,7 @@ int main()
 	}
 
 	print_cons(console, WIDTH, HEIGHT);
+	// print_cons_comp(console, WIDTH, HEIGHT); // No need here because formula self compense the width
 
 	usleep(dt*1000000);
     }

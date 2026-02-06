@@ -12,7 +12,7 @@
 #endif
 
 # define HEIGHT	(10*9)
-# define WIDTH	(15*16)
+# define WIDTH	(10*16)
 
 int main()
 {
@@ -28,7 +28,8 @@ int main()
       cons_cercle(console, WIDTH, HEIGHT, i, i, j, '#');
       cons_cercle(console, WIDTH, HEIGHT, i, i, j-1, '.');
 
-      print_cons(console, WIDTH, HEIGHT);
+      // print_cons(console, WIDTH, HEIGHT);
+      print_cons_comp(console, WIDTH, HEIGHT);
 
       usleep(50000);
    }

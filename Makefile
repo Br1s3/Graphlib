@@ -25,7 +25,7 @@ static:
 	$(MAKE) --no-print-directory MODE=PROGSTAT $(EXEC)
 
 ifeq ($(MODE), PROG1)
-%: %.c
+%: %.c libgraph.h
 	@echo Simple compilation of programs
 	$(CC) $< -o $@ -D$(MODE) $(CFLAGS)
 else ifeq ($(MODE), PROG2)
