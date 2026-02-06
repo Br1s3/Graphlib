@@ -6,8 +6,7 @@ Short and simple static/shared library to draw shapes
 
 ```console
 $ make header
-$ ./prog1 
-$ ./prog2 
+$ ./animation 
 $ ./raytracing 
 $ ./triangle 
 $ ./3DSquare
@@ -20,9 +19,9 @@ Here is 3 ways to compile a same program:
 > - make static will create a static librairy of graph and compile all the other programs with libgraph.a
 > - make dynamic will create a dynamic librairy of graph and compile all the other programs with libgraph.so
 
-The prog.c program is just an exemple of use and it draw a triangle and move each point to the x and y axes step by step
+All programs are exemples of use of the library.
 
-## Exmple:
+## Exemples:
 
 _Ray tracing_
 
@@ -34,4 +33,4 @@ _Square in 3 Dimension_
 
 _All triangles_
 
-[![Triangles](./picture/3DSquare.gif)](/picture)
+[![Triangles](./picture/Triangles.gif)](/picture)

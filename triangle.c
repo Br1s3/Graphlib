@@ -12,7 +12,7 @@
 #endif
 
 # define HEIGHT	(7*9)
-# define WIDTH	(10*16)
+# define WIDTH	(7*16)
 
 
 int main()
