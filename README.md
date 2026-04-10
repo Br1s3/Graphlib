@@ -34,3 +34,8 @@ _Square in 3 Dimension_
 _All triangles_
 
 [![Triangles](./picture/Triangles.gif)](/picture)
+
+
+_How to draw a line:_
+
+https://www.desmos.com/calculator/z1dthkvot0

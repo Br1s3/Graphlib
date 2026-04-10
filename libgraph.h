@@ -40,13 +40,13 @@ void mem_free(char **ptr, int H);
 void cons_clear(char **pixels, short width, short height, const char clear);
 void cons_rect(char **pixels, short width, short height, int x, int y, int largeur, int hauteur, const char fd);
 void cons_cercle(char **pixels, short width, short height, int x, int y, int radius, const char fd);
-void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx, int by, const char fd);
+void cons_ligne(char **pixels, const short width, const short height, int ax, int ay, int bx, int by, const char fd);
 void cons_triangle(char **pixels, short width, short height, int ax, int ay, int bx, int by, int cx, int cy, const char fd);
 
 void print_cons(char **pixels, short width, short height);
 void print_cons_comp(char **pixels, short width, short height);
 
-void draw_clear(uint8_t ***pixels, short width, short height);
+void draw_clear(uint8_t ***pixels, short width, short height, const uint32_t fd);
 void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, const uint32_t fd);
 void draw_cercle(uint8_t ***pixels, short width, short height, int x, int y, int radius, const uint32_t fd);
 
@@ -123,21 +123,26 @@ void cons_rect(char **pixels, short width, short height, int x, int y, int large
     }
 }
 
-void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx, int by, const char fd)
+
+void cons_ligne(char **pixels, const short width, const short height, int ax, int ay, int bx, int by, const char fd)
 {
     COORDF a, b, AB;
-    a.x = (float)ax/(float)(width/2);
-    a.y = (float)ay/(float)(-height/2);
-    b.x = (float)bx/(float)(width/2);
-    b.y = (float)by/(float)(-height/2);
+    const float midH = (float)height/2.f;
+    const float midW = (float)width/2.f;
+    a.x = (float)ax/(midW);
+    a.y = (float)ay/(-midH);
+    b.x = (float)bx/(midW);
+    b.y = (float)by/(-midH);
     AB.x = b.x - a.x;
     AB.y = b.y - a.y;
 
+    double x;
+    double y;
     for (double t = 0; t < 1; t+=0.01) {
-	double x = (AB.x*t + a.x);
-	double y = (AB.y*t + a.y);
-	if ((int)(ABS(x*(width/2))) > width/2-1 || (int)(ABS(y*(height/2))) > height/2-1) break;
-	pixels[(int)((height/2)*(1 - y))][(int)((width/2)*(1 + x))] = fd;
+	x = (AB.x*t + a.x);
+	y = (AB.y*t + a.y);
+	if ((int)(ABS(x*(midW))) > midW-1 || (int)(ABS(y*(midH))) > midH-1) break;
+	pixels[(int)((midH)*(1 - y))][(int)((midW)*(1 + x))] = fd;
     }
 }
 
@@ -186,14 +191,14 @@ void cons_triangle(char **pixels, short width, short height, int ax, int ay, int
 }
 
 
-void draw_clear(uint8_t ***pixels, short width, short height)
+void draw_clear(uint8_t ***pixels, short width, short height, const uint32_t fd)
 {
    short i, j;
    for (i = 0; i < height; ++i) {
       for (j = 0; j < width; j++) {
-	  pixels[i][j][0] = 0x00;
-	  pixels[i][j][1] = 0x00;
-	  pixels[i][j][2] = 0x00;
+	  pixels[i][j][0] = fd;
+	  pixels[i][j][1] = fd;
+	  pixels[i][j][2] = fd;
       }
    }
 }
@@ -207,7 +212,7 @@ void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, in
     b.y = (float)by/(float)(-height/2);
     AB.x = b.x - a.x;
     AB.y = b.y - a.y;
-
+    // TODO: Modify t step with 3 if statement if (sqrt(h² + w²) > 1000) t+=0.0001 else reduce
 
     for (double t = 0; t < 1; t+=0.01) {
 	double x = (AB.x*t + a.x);

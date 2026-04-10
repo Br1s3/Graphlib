@@ -139,14 +139,14 @@ void cons_triangle(char **pixels, short width, short height, int ax, int ay, int
 }
 
 
-void draw_clear(uint8_t ***pixels, short width, short height)
+void draw_clear(uint8_t ***pixels, short width, short height, const uint32_t fd)
 {
    short i, j;
    for (i = 0; i < height; ++i) {
       for (j = 0; j < width; j++) {
-	  pixels[i][j][0] = 0x00;
-	  pixels[i][j][1] = 0x00;
-	  pixels[i][j][2] = 0x00;
+	  pixels[i][j][0] = fd;
+	  pixels[i][j][1] = fd;
+	  pixels[i][j][2] = fd;
       }
    }
 }

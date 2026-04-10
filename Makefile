@@ -1,6 +1,6 @@
 CC = gcc
 RM = rm -rf
-EXEC = animation raytracing triangle 3DSquare
+EXEC = animation raytracing triangle 3DSquare MeshGrid
 
 CFLAGS +=	\
 -Wextra		\

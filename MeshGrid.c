@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#if defined(PROG1)
+#    define LIBGRAPH_IMPLEMENTATION
+#    include "libgraph.h"
+#elif defined(PROG2)
+#    include "libgraph.h"
+#else
+#    include "graph.h"
+#endif
+
+# define HEIGHT	(7*9)
+# define WIDTH	(7*16)
+
+typedef struct
+{
+    int grid;
+    
+    struct
+    {
+	int x, y;
+    } Offset;
+    
+    int width;
+    int height;
+} Window;
+
+void SetMeshGrid(Window *win, unsigned int w, unsigned int h, unsigned int meshgrid)
+{
+    if (meshgrid <= 0) {
+	fprintf(stdout, "WARNING: The parameter meshgrid <= 0\n");
+	meshgrid = 1;
+    }
+    win->grid = ((h + w)/meshgrid);
+    if (win->grid == 0) {
+	fprintf(stdout, "WARNING: Grid < pixel size\n");
+	win->grid = 1;
+    }
+    win->width = w/win->grid;
+    win->height = h/win->grid;
+    win->Offset.x = ((int)((((float)w/(float)win->grid) - (w/win->grid))*win->grid/2));
+    win->Offset.y = ((int)((((float)h/(float)win->grid) - (h/win->grid))*win->grid/2));
+}
+
+
+int main()
+{
+    char **console = mem_alloc(HEIGHT, WIDTH);
+    Window wind;
+
+    for (int k = 0; k < 255; k++) {
+	cons_clear(console, WIDTH, HEIGHT, ' ');
+	cons_rect(console, WIDTH, HEIGHT, -WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT, '#');
+	cons_rect(console, WIDTH, HEIGHT, -WIDTH/2+1, -HEIGHT/2+1, WIDTH-2, HEIGHT-3, ' ');
+	cons_cercle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
+	
+	SetMeshGrid(&wind, WIDTH, HEIGHT, k+1);
+	for (int i = 0; i < wind.width; i++) {
+	    for (int j = 0; j < wind.height; j++) {
+		if ((((i-wind.width/2))*((i-wind.width/2)) + ((j-wind.height/2))*((j-wind.height/2)))*wind.grid*wind.grid <= 300)
+		cons_rect(console, WIDTH, HEIGHT, wind.grid*i + wind.Offset.x - WIDTH/2, wind.grid*j + wind.Offset.y - HEIGHT/2, wind.grid, wind.grid, '@');
+	    }
+	}
+
+	cons_cercle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
+	
+	print_cons_comp(console, WIDTH, HEIGHT);
+	// print_cons(console, WIDTH, HEIGHT);
+	usleep(50000);
+	printf("k = %d\n", k);
+    }
+    mem_free(console, HEIGHT);
+
+    return 0;
+}

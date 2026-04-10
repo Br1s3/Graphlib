@@ -124,7 +124,7 @@ int main()
     while (1) {
 	// dz    += 1*dt;
 	angle += 1*M_PI*dt;
-	cons_clear(console, WIDTH, HEIGHT, '.');
+	cons_clear(console, WIDTH, HEIGHT, '`');
 
 	// for (int i = 0; i < 8; i++) {
 	//     COORD3DF buf = S.p[i];
