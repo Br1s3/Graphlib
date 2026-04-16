@@ -51,24 +51,24 @@ int main()
     Window wind;
 
     for (int k = 0; k < 255; k++) {
-	cons_clear(console, WIDTH, HEIGHT, ' ');
-	cons_rect(console, WIDTH, HEIGHT, -WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT, '#');
-	cons_rect(console, WIDTH, HEIGHT, -WIDTH/2+1, -HEIGHT/2+1, WIDTH-2, HEIGHT-3, ' ');
-	cons_cercle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
+	ConsoleClear(console, WIDTH, HEIGHT, ' ');
+	PrintRectangle(console, WIDTH, HEIGHT, -WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT, '#');
+	PrintRectangle(console, WIDTH, HEIGHT, -WIDTH/2+1, -HEIGHT/2+1, WIDTH-2, HEIGHT-3, ' ');
+	PrintCircle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
 	
 	SetMeshGrid(&wind, WIDTH, HEIGHT, k+1);
 	for (int i = 0; i < wind.width; i++) {
 	    for (int j = 0; j < wind.height; j++) {
 		if ((((i-wind.width/2))*((i-wind.width/2)) + ((j-wind.height/2))*((j-wind.height/2)))*wind.grid*wind.grid <= 300)
-		cons_rect(console, WIDTH, HEIGHT, wind.grid*i + wind.Offset.x - WIDTH/2, wind.grid*j + wind.Offset.y - HEIGHT/2, wind.grid, wind.grid, '@');
+		PrintRectangle(console, WIDTH, HEIGHT, wind.grid*i + wind.Offset.x - WIDTH/2, wind.grid*j + wind.Offset.y - HEIGHT/2, wind.grid, wind.grid, '@');
 	    }
 	}
 
-	cons_cercle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
+	// PrintCircle(console, WIDTH, HEIGHT, 0, 0, 17, '.');
 	
-	print_cons_comp(console, WIDTH, HEIGHT);
-	// print_cons(console, WIDTH, HEIGHT);
-	usleep(50000);
+	PrintConsoleSpace(console, WIDTH, HEIGHT);
+	// PrintConsole(console, WIDTH, HEIGHT);
+	usleep(100000);
 	printf("k = %d\n", k);
     }
     mem_free(console, HEIGHT);

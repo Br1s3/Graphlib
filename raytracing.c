@@ -66,22 +66,22 @@ int main()
     char **console = mem_alloc(HEIGHT, WIDTH);
 
     for (double k = 0; k < 5*M_PI; k+=0.01) {
-	cons_clear(console, WIDTH, HEIGHT, ' ');
+	ConsoleClear(console, WIDTH, HEIGHT, ' ');
 	light.pos.y = sin(k)*(HEIGHT/2.5);
 
 	for (double j = 0; j < 2*M_PI; j+=M_PI/50) {
 	    int len = raytracing(light, light.brighness, cos(j), sin(j), shadow1);
 	    if(raytracing(light, 1000, cos(j), sin(j), shadow2) < len)
 	        len = raytracing(light, light.brighness, cos(j), sin(j), shadow2);
-	    cons_ligne(console, WIDTH, HEIGHT, light.pos.x, light.pos.y, light.pos.x + cos(j)*(len), light.pos.y + sin(j)*(len), '.');
+	    PrintLine(console, WIDTH, HEIGHT, light.pos.x, light.pos.y, light.pos.x + cos(j)*(len), light.pos.y + sin(j)*(len), '.');
 	}
 	
-	cons_cercle(console, WIDTH, HEIGHT, light.pos.x, light.pos.y, light.radius, light.color);	
-	cons_cercle(console, WIDTH, HEIGHT, shadow1.pos.x, shadow1.pos.y, shadow1.radius, shadow1.color);
-	cons_cercle(console, WIDTH, HEIGHT, shadow2.pos.x, shadow2.pos.y, shadow2.radius, shadow2.color);
+	PrintCircle(console, WIDTH, HEIGHT, light.pos.x, light.pos.y, light.radius, light.color);	
+	PrintCircle(console, WIDTH, HEIGHT, shadow1.pos.x, shadow1.pos.y, shadow1.radius, shadow1.color);
+	PrintCircle(console, WIDTH, HEIGHT, shadow2.pos.x, shadow2.pos.y, shadow2.radius, shadow2.color);
 
 	// print_cons(console, WIDTH, HEIGHT);
-	print_cons_comp(console, WIDTH, HEIGHT);
+	PrintConsoleSpace(console, WIDTH, HEIGHT);
 	usleep(5000);
     }
     

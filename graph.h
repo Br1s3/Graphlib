@@ -1,13 +1,13 @@
 #ifndef CONS_H_INCLUED
 #define CONS_H_INCLUED
 
-#define max(x, y) ((x)<(y) ? y : x)
-#define min(x, y) ((x)>(y) ? y : x)
-#define moveto(y, x) printf("\033[%d;%dH", (y), (x));
-#define dec(x, y) ((x*(width+1)) + y)
-#ifndef ABS
-#define ABS(x) ((x)<0?(-x):(x))
-#endif
+#include <stdint.h>
+// #define max(x, y) ((x)<(y) ? (y) : (x))
+// #define min(x, y) ((x)>(y) ? (y) : (x))
+#define MOVETO_LIBGRAPH(y, x) printf("\033[%d;%dH", (y), (x))
+#define DEC_LIBGRAPH(x, y) (((x)*(width+1)) + (y))
+#define ABS_GRAPHLIB(x) ((x) < 0 ? (-x) : (x))
+
 #define ERRALLOC(x)                                                                          \
 do                                                                                           \
 {                                                                                            \
@@ -25,26 +25,27 @@ typedef struct
 
 typedef struct
 {
-   double x, y;
+   float x, y;
 }COORDF;
-
 
 char **mem_alloc(int H, int W);
 void mem_free(char **ptr, int H);
-void cons_clear(char **pixels, short width, short height, const char clear);
-void cons_rect(char **pixels, short width, short height, int x, int y, int largeur, int hauteur, const char fd);
-void cons_cercle(char **pixels, short width, short height, int x, int y, int radius, const char fd);
-void cons_ligne(char **pixels, short width, short height, int ax, int ay, int bx, int by, const char fd);
-void cons_triangle(char **pixels, short width, short height, int ax, int ay, int bx, int by, int cx, int cy, const char fd);
 
-void print_cons(char **pixels, short width, short height);
-void print_cons_comp(char **pixels, short width, short height);
+void ConsoleClear(char **pixels, short width, short height, const char clear);
 
-void set_console();
+void PrintRectangle(char **pixels, short width, short height, int x, int y, int largeur, int hauteur, const char fd);
+void PrintCircle(char **pixels, short width, short height, int x, int y, int radius, const char fd);
+void PrintLine(char **pixels, const short width, const short height, int ax, int ay, int bx, int by, const char fd);
+void PrintTriangle(char **pixels, short width, short height, int ax, int ay, int bx, int by, int cx, int cy, const char fd);
 
-#include <stdint.h>
-void draw_clear(uint8_t ***pixels, short width, short height, const uint32_t fd);
-void draw_ligne(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, const uint32_t fd);
-void draw_cercle(uint8_t ***pixels, short width, short height, int x, int y, int radius, const uint32_t fd);
+void PrintConsole(char **pixels, short width, short height);
+void PrintConsoleSpace(char **pixels, short width, short height);
+
+
+void ClearDrawing(uint8_t ***pixels, short width, short height, const uint32_t fd);
+
+void DrawLine(uint8_t ***pixels, short width, short height, int ax, int ay, int bx, int by, const uint32_t fd);
+void DrawCircle(uint8_t ***pixels, short width, short height, int x, int y, int radius, const uint32_t fd);
+
 
 #endif //CONS_H_INCLUED

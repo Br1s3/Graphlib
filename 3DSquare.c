@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include <raylib.h>
+// #include <raylib.h>
 #include <math.h>
 
 #if defined(PROG1)
@@ -124,7 +124,7 @@ int main()
     while (1) {
 	// dz    += 1*dt;
 	angle += 1*M_PI*dt;
-	cons_clear(console, WIDTH, HEIGHT, '`');
+	ConsoleClear(console, WIDTH, HEIGHT, '`');
 
 	// for (int i = 0; i < 8; i++) {
 	//     COORD3DF buf = S.p[i];
@@ -142,11 +142,11 @@ int main()
 		Z_translation(&buf[1], dz);
 		buf[0] = convert(buf[0]);
 		buf[1] = convert(buf[1]);
-		cons_ligne(console, WIDTH, HEIGHT, buf[0].x*(WIDTH/2), -buf[0].y*(HEIGHT/2), buf[1].x*(WIDTH/2), -buf[1].y*(HEIGHT/2), '+');
+		PrintLine(console, WIDTH, HEIGHT, buf[0].x*(WIDTH/2), -buf[0].y*(HEIGHT/2), buf[1].x*(WIDTH/2), -buf[1].y*(HEIGHT/2), '+');
 	    }
 	}
 
-	print_cons(console, WIDTH, HEIGHT);
+	PrintConsole(console, WIDTH, HEIGHT);
 	// print_cons_comp(console, WIDTH, HEIGHT); // No need here because formula self compense the width
 
 	usleep(dt*1000000);

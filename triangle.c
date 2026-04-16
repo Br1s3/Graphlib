@@ -19,7 +19,7 @@ int main()
 {
    char ** console = mem_alloc(HEIGHT, WIDTH);
 
-   cons_clear(console, WIDTH, HEIGHT, '.');
+   ConsoleClear(console, WIDTH, HEIGHT, '.');
 
    int ax = -20;
    int ay = 20;
@@ -32,63 +32,63 @@ int main()
 
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, i, ay, bx, by, cx, cy, '#');
-       cons_triangle(console, WIDTH, HEIGHT, i+1, ay-1, bx, by+1, cx-1, cy-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, i, ay, bx, by, cx, cy, '#');
+       PrintTriangle(console, WIDTH, HEIGHT, i+1, ay-1, bx, by+1, cx-1, cy-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, ax, i, bx, by, cx, cy, '#');
-       cons_triangle(console, WIDTH, HEIGHT, ax+1, i+1, bx, by+1, cx-1, cy-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, ax, i, bx, by, cx, cy, '#');
+       PrintTriangle(console, WIDTH, HEIGHT, ax+1, i+1, bx, by+1, cx-1, cy-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, ax, ay, i, by, cx, cy, '#');
-       cons_triangle(console, WIDTH, HEIGHT, ax+1, ay-1, i, by+1, cx-1, cy-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, ax, ay, i, by, cx, cy, '#');
+       PrintTriangle(console, WIDTH, HEIGHT, ax+1, ay-1, i, by+1, cx-1, cy-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, ax, ay, bx, i, cx, cy, '#');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, ax, ay, bx, i, cx, cy, '#');
        if (i != 19)
-	   cons_triangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, i+1, cx-1, cy-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+	   PrintTriangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, i+1, cx-1, cy-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, ax, ay, bx, by, i, cy, '#');
-       cons_triangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, by+1, i-1, cy-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, ax, ay, bx, by, i, cy, '#');
+       PrintTriangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, by+1, i-1, cy-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 
    for (int i = -20; i < 20; i++) {
-       cons_clear(console, WIDTH, HEIGHT, '.');
-       cons_triangle(console, WIDTH, HEIGHT, ax, ay, bx, by, cx, i, '#');
-       cons_triangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, by+1, cx-1, i-1, '+');
-       cons_rect(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
+       ConsoleClear(console, WIDTH, HEIGHT, '.');
+       PrintTriangle(console, WIDTH, HEIGHT, ax, ay, bx, by, cx, i, '#');
+       PrintTriangle(console, WIDTH, HEIGHT, ax+1, ay-1, bx, by+1, cx-1, i-1, '+');
+       PrintRectangle(console, WIDTH, HEIGHT, 0, 0, 1, 1, '*');
        // print_cons(console, WIDTH, HEIGHT);
-       print_cons_comp(console, WIDTH, HEIGHT);
+       PrintConsoleSpace(console, WIDTH, HEIGHT);
        usleep(100000);
    }
 

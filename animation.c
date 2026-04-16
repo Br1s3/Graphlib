@@ -21,15 +21,15 @@ int main()
    int i, j = 1;
    for (i = -45; i < 45; i++, j++) {
       if (i<0) j = -i;
-      cons_clear(console, WIDTH, HEIGHT, ' ');
+      ConsoleClear(console, WIDTH, HEIGHT, ' ');
 
-      cons_rect(console, WIDTH, HEIGHT, -i*2, i, 10, 5, '#');
-      cons_rect(console, WIDTH, HEIGHT, -i*2+1, i+1, 8, 3, '.');
-      cons_cercle(console, WIDTH, HEIGHT, i, i, j, '#');
-      cons_cercle(console, WIDTH, HEIGHT, i, i, j-1, '.');
+      PrintRectangle(console, WIDTH, HEIGHT, -i*2, i, 10, 5, '#');
+      PrintRectangle(console, WIDTH, HEIGHT, -i*2+1, i+1, 8, 3, '.');
+      PrintCircle(console, WIDTH, HEIGHT, i, i, j, '#');
+      PrintCircle(console, WIDTH, HEIGHT, i, i, j-1, '.');
 
       // print_cons(console, WIDTH, HEIGHT);
-      print_cons_comp(console, WIDTH, HEIGHT);
+      PrintConsoleSpace(console, WIDTH, HEIGHT);
 
       usleep(50000);
    }
